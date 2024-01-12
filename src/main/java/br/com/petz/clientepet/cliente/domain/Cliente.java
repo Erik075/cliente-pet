@@ -22,11 +22,11 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Cliente {
 	@Id
-	@GeneratedValue(Strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idCliente;
     @NotBlank
-	private String nomeCompleto;
+	private String nomeCompleto; 
 	@NotBlank
 	@Email
 	private String email;
