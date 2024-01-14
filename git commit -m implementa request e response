@@ -1,0 +1,75 @@
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[1mindex ed4ce1a..64f5e53 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[36m@@ -13,5 +13,4 @@[m [mpublic interface ClienteAPI {[m
+ 	@PostMapping[m
+ 	@ResponseStatus(code = HttpStatus.CREATED)[m
+ 	ClienteResponse postCliente(@RequestBody ClienteResquest clienteResquest);[m
+[31m-[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResponse.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResponse.java[m
+[1mindex a48b4f1..7c4383a 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResponse.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResponse.java[m
+[36m@@ -1,5 +1,11 @@[m
+ package br.com.petz.clientepet.cliente.application.api;[m
+ [m
+[32m+[m[32mimport java.util.UUID;[m
+[32m+[m
+[32m+[m[32mimport lombok.Value;[m
+[32m+[m
+[32m+[m[32m@Value[m
+ public class ClienteResponse {[m
+[32m+[m	[32mprivate UUID idCliente;[m
+ [m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResquest.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResquest.java[m
+[1mindex d1ab23c..724b91e 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResquest.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteResquest.java[m
+[36m@@ -1,5 +1,32 @@[m
+ package br.com.petz.clientepet.cliente.application.api;[m
+ [m
+[32m+[m[32mimport java.time.LocalDate;[m
+[32m+[m
+[32m+[m[32mimport org.hibernate.validator.constraints.br.CPF;[m
+[32m+[m
+[32m+[m[32mimport br.com.petz.clientepet.cliente.domain.Sexo;[m
+[32m+[m[32mimport jakarta.validation.constraints.Email;[m
+[32m+[m[32mimport jakarta.validation.constraints.NotBlank;[m
+[32m+[m[32mimport jakarta.validation.constraints.NotNull;[m
+[32m+[m[32mimport lombok.Value;[m
+[32m+[m
+[32m+[m[32m@Value[m
+ public class ClienteResquest {[m
+[32m+[m		[32m@NotBlank[m
+[32m+[m	[32mprivate String nomeCompleto;[m
+[32m+[m	[32m@NotBlank[m
+[32m+[m	[32m@Email[m
+[32m+[m	[32mprivate String email;[m
+[32m+[m	[32m@NotBlank[m
+[32m+[m	[32mprivate String celular;[m
+[32m+[m	[32mprivate String telefone;[m
+[32m+[m	[32mprivate Sexo sexo;[m
+[32m+[m	[32m@NotNull[m
+[32m+[m	[32mprivate LocalDate dataNascimento;[m
+[32m+[m	[32m@CPF[m
+[32m+[m	[32mprivate String cpf;[m
+[32m+[m	[32m@NotNull[m
+[32m+[m	[32mprivate Boolean aceitaTermos;[m
+[32m+[m
+ [m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/domain/Cliente.java b/src/main/java/br/com/petz/clientepet/cliente/domain/Cliente.java[m
+[1mindex 387261c..8fbe730 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/domain/Cliente.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/domain/Cliente.java[m
+[36m@@ -25,7 +25,6 @@[m [mpublic class Cliente {[m
+ 	@Column(name = "id", updatable = false, unique = true, nullable = false)[m
+ [m
+ 	private UUID idCliente;[m
+[31m-[m
+ 	@NotBlank[m
+ 	private String nomeCompleto;[m
+ 	@NotBlank[m

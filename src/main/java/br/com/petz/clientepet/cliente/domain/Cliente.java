@@ -25,7 +25,6 @@ public class Cliente {
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 
 	private UUID idCliente;
-
 	@NotBlank
 	private String nomeCompleto;
 	@NotBlank
