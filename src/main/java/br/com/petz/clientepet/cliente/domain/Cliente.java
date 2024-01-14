@@ -17,16 +17,17 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
+
 	private UUID idCliente;
-    @NotBlank
-	private String nomeCompleto; 
+
+	@NotBlank
+	private String nomeCompleto;
 	@NotBlank
 	@Email
 	private String email;
@@ -40,10 +41,10 @@ public class Cliente {
 	private String cpf;
 	@NotNull
 	private Boolean aceitaTermos;
-	
+
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAlteracao;
-	
+
 	private Cliente(@NotBlank String nomeCompleto, @NotBlank @Email String email, @NotBlank String celular,
 			String telefone, Sexo sexo, @NotNull LocalDate dataNascimento, @CPF String cpf,
 			@NotNull Boolean aceitaTermos) {
@@ -57,7 +58,5 @@ public class Cliente {
 		this.aceitaTermos = aceitaTermos;
 		this.dataHoraDoCadastro = LocalDateTime.now();
 	}
-	
-	
-	
+
 }
